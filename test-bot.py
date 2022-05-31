@@ -300,7 +300,72 @@ Call with no flag to lock the current channel.
     pass
 
 
+################################# Fun Commands #################################
+
+class Fun(commands.Cog):
+    '''Fun commands :)'''
+
+    def __init__(self, bot):
+        self.bot = bot
+        return
+
+    # inspirational quotes
+    @commands.command(
+        name="inspire",
+        description="Produce a random inspirational quote from the Zenquotes API.",
+        scope=guild_id
+    )
+    async def inspire(self, ctx : Interaction):
+        '''Random inspirational quote'''
+        response = requests.get("https://zenquotes.io/api/random")
+        json_data = json.loads(response.text)
+        quote = json_data[0]['q']
+        author = json_data[0]['a']
+        quote_with_attribution = f'{quote}  --{author}'
+        await ctx.send(quote_with_attribution)
+        return
+
+    # random chuck norris fact
+    @commands.command(
+        name="norris",
+        description="Produce a random fact about the great Chuck Norris from the chuck-norris-jokes API.",
+        scope=guild_id
+    )
+    async def norris(self, ctx : Interaction):
+        '''Random Chuck Norris fact'''
+        headers = {
+	    "accept": "application/json",
+	    "X-RapidAPI-Host": "matchilling-chuck-norris-jokes-v1.p.rapidapi.com",
+	    "X-RapidAPI-Key": norris_key
+        }
+        response = requests.request("GET", "https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random", headers=headers)
+        json_data = json.loads(response.text)
+        quote = json_data["value"]
+        await ctx.send(quote)
+        return
+
+    # query time remaining to dnd
+    @commands.command(
+        name="dnd",
+        description="Compute time remaining to DnD session",
+        scope=guild_id
+    )
+    async def dnd(self, ctx : Interaction):
+        '''Display info about next DnD session.'''
+        # TODO: Add functionality to set the next DnD session.
+        now = datetime.datetime.utcnow().replace(hour=0, minute=0, second=0)
+        next_dnd = dnd_date.replace(hour=0, minute=0, second=0)
+        next_dnd_str = next_dnd.strftime("%A, %B %d, %Y")
+        remaining = next_dnd - now
+        message = f"The next DnD meeting is {next_dnd_str}.  That's {remaining.days} days from now!"
+        await ctx.send(message)
+        return
+    pass
+
+
+################################### Setup Bot ##################################
 bot = commands.Bot(command_prefix='$')
 bot.add_cog(Basic(bot, bot_channel))
 bot.add_cog(Admin(bot, bot_channel))
+bot.add_cog(Fun(bot))
 bot.run(TOKEN)
