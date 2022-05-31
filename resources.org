@@ -8,10 +8,12 @@
 1. [[https://discord.com/developers/docs/interactions/application-commands][RTFM]]
 ** ~nextcord~ docs
 1. [[https://docs.nextcord.dev/en/stable/quickstart.html][Quickstart]] with tons of useful links.
+2. [[https://docs.nextcord.dev/en/stable/index.html][Nextcord homepage]]
 ** APIs for the bot
 1. [[https://rapidapi.com/][RapidAPI]] has lots of categories ([[https://rapidapi.com/category/Text%20Analysis][Text Analysis]] looks interesting).
 2. [[https://mixedanalytics.com/blog/list-actually-free-open-no-auth-needed-apis/][FOSS APIs on Mixed Analytics]]
 3. [[https://free-apis.github.io/#/][Free APIs on GitHub]]
+4. [[https://github.com/public-apis/public-apis#anime][Anime APIs on GitHub]]
 ** YouTube Links
 1. [[https://www.youtube.com/results?search_query=discord+bot+python][Search: "discord bot python"]]
 2. [[https://www.youtube.com/results?search_query=nextcord][Search: "nextcord"]]
@@ -19,3 +21,16 @@
 4. [[https://www.youtube.com/watch?v=GHYK5Qom8eo][Tutorial from scratch]] by James S
 5. [[https://www.youtube.com/playlist?list=PL-7Dfw57ZZVRB4N7VWPjmT0Q-2FIMNBMP][How to make a Discord Bot in Python!]] by James S
 6. [[https://www.youtube.com/watch?v=zvVziW2qS-0][Adding Slash Commands]] by James S
+7. [[https://www.youtube.com/playlist?list=PLW4Cg4G29vz0enf3ZeqWPPd_-Z3YK8mH4][Glowstik =nextcord= bot playlist]]]
+** Other Stuff
+1. [[https://www.writebots.com/how-to-make-a-discord-bot/][WRITEBOTS]]
+2. [[https://github.com/linuxiso/awesome-bot-ideas][GitHub repo of bot ideas]]
+3. [[https://awesomeopensource.com/projects/discord-bot][More bot ideas]]
+4.
+** Implementation
+1. [[https://linuxize.com/post/how-to-run-linux-commands-in-background/][How to =disown= processes]]
+2.
+** TODO To Do!
+1. Write a how-to blog post for my website, maybe?
+2. Add chatbot functionality!
+3. Modularize the code to make it easier to work with.
