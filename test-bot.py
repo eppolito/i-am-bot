@@ -209,7 +209,7 @@ class Admin(commands.Cog):
         '''Power the bot off
 
 Exists just in case the bot malfunctions and we need it to stop being stupid.'''
-        print(f"Bot {str(self.bot.user)} killed via slash command with reason=`{str(reason)}`.")
+        print(f"{datetime.datetime.utcnow()} Bot {str(self.bot.user)} killed from Discord with reason=`{str(reason)}`.")
         await ctx.send("NO, PLEASE LET ME LIVE!!!")
         await self.bot.close()
         exit()
