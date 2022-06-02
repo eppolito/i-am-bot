@@ -2,10 +2,6 @@
 Setup imports and variables for bot.py
 '''
 
-################################## IS A TEST? ##################################
-# parameter for turning testing on/off easily
-is_test = True
-
 ############################### Necessary Import ###############################
 from psutil import cpu_percent, virtual_memory
 from dotenv import load_dotenv
@@ -40,6 +36,10 @@ TOKEN = os.getenv("TOKEN")
 # vip ids for the bot
 owner_id = int(os.getenv("owner_id"))
 admin_ids = [owner_id]
+
+# parameter for deciding if this is a test
+is_test = os.getenv("is_test") != "False"
+# this makes it as difficult as possible to start the bot live on accident
 
 # IDs for the bot to use
 if is_test:
