@@ -1,0 +1,9 @@
+#!/usr/bin/sh
+
+MY_DISCORD_DIR="$HOME/Programs/discord"
+MY_DATE=`date +%Y-%m-%d-%H-%M-%S`
+MY_BOT="bot.py"
+MY_LOGFILE="$MY_DISCORD_DIR/log/${MY_DATE}_bot"
+
+cd "$MY_DISCORD_DIR"
+unbuffer "$MY_DISCORD_DIR/$MY_BOT" | tee "$MY_LOGFILE"
