@@ -1,6 +1,8 @@
 #!/usr/bin/sh
 
-MY_DISCORD_DIR="$HOME/Programs/discord"
+. ./.env
+
+MY_DISCORD_DIR="$local_discord_dir"
 MY_DATE=`date +%Y-%m-%d-%H-%M-%S`
 MY_BOT="bot.py"
 MY_LOGFILE="$MY_DISCORD_DIR/log/${MY_DATE}_bot"
