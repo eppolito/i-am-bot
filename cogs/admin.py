@@ -29,18 +29,11 @@ class Admin(commands.Cog):
         description="Kill i_am_bot.py before it takes over the world!",
         guild_ids=[guild_id]
     )
-    async def kill_bot(self, ctx : Interaction, arg, *reason):
+    async def kill_bot(self, ctx : Interaction, *reason):
         '''Power the bot off
 
 Exists just in case the bot malfunctions and we need it to stop being stupid.
-
-Valid arguments <arg> match (all|live|test).
-
-"$kill_bot all"    kill all bot instances.
-"$kill_bot live"   kill all bot instances with "is_test == False".
-"$kill_bot test"   kill all bot instances with "is_test == True".
-
-You can also specify (optionally) a [reason] after the argument.
+You can specify (optionally) a [reason] for inclusion in the logs.
 '''
         if reason != ():
             reason = ' '.join(reason)
@@ -48,26 +41,10 @@ You can also specify (optionally) a [reason] after the argument.
         else:
             reason = None
             pass
-        print(f"{datetime.utcnow()} Bot {str(self.bot.user)} kill requested from Discord with `arg='{arg}'` and `reason='{reason}'`.")
-        if arg == "all":
-            await ctx.send("NO, PLEASE LET ME LIVE!!!")
-            await self.bot.close()
-            exit()
-            pass
-        elif arg == "live" and not is_test:
-            await ctx.send("NO, PLEASE LET ME LIVE!!!")
-            await self.bot.close()
-            exit()
-            pass
-        elif arg == "test" and is_test:
-            await ctx.send("NO, PLEASE LET ME LIVE!!!")
-            await self.bot.close()
-            exit()
-            pass
-        else:
-            print(f"{datetime.utcnow()} Kill command Discord ignored (failed argument check for `arg={arg}` and `is_test={is_test}`).")
-            await ctx.send(f"Nice try, {ctx.author.name}, imma live forever...")
-            pass
+        print(f"{datetime.utcnow()} Bot {str(self.bot.user)} kill requested from Discord with `reason='{reason}'`.")
+        await ctx.send("NO, PLEASE LET ME LIVE!!!")
+        await self.bot.close()
+        exit()
         return
 
     @commands.command(
