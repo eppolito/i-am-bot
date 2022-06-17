@@ -15,7 +15,7 @@ class DnD(commands.Cog):
 
     # query time remaining to dnd
     @commands.command(
-        name="next_dnd",
+        name="dnd_next",
         description="Compute time remaining to DnD session",
         scope=guild_id
     )
@@ -86,17 +86,41 @@ Thus this function ignores all arguments greater than 99 (for Rhizka-proofing).
 
     # TODO: ADD A COMMAND TO QUERY THIS API: http://www.dnd5eapi.co/docs/#overview
     @commands.command(
-        name="query_dnd",
+        name="dnd_query",
         description="Query D&D 5e API.",
         scope=guild_id
     )
-    async def dnd_query(self, ctx : Interaction, *args):
+    async def dnd_query(self, ctx : Interaction, endpoint="", index=""):
         '''Make a query to the D&D 5e API (not implemented)
 
 See http://www.dnd5eapi.co/docs/#overview for documentation on the API itself.
-This includes a list of possible query terms.
-'''
-        await ctx.send("Well this is embarassing...  That command hasn't been implemented yet...")
-        return
+A typical request should look like this:
+        $query_dnd [endpoint] [index]
+Make an empty query to get the list of endpoints.
+Make an endpoint-only query to get the list of indices for that endpoint.
 
+KNOWN BUGS:
+        This will error-out if the API returns more than 4000 characters.
+'''
+        url = "https://www.dnd5eapi.co/api"
+        if endpoint:
+            url += "/" + endpoint
+            if index:
+                url += "/" + index
+                pass
+            else:
+                response = requests.get(url)
+                json_data = json.loads(response.text)["results"]
+                indexes = ' | '.join(list(key["index"] for key in json_data))
+                print(indexes)
+                # response_string = f"Index list for *{endpoint}*: `{' | '.join(indexes)}`"
+                response_string = "this is what you get."
+                pass
+        else:
+            response = requests.get(url)
+            json_data = json.loads(response.text)
+            response_string = f"Endpoints: `{' | '.join(list(json_data.keys()))}`"
+            pass
+        await ctx.send(response_string)
+        return
     pass
