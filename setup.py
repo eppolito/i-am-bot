@@ -31,25 +31,26 @@ stats = {
 
 # load our environment
 load_dotenv()
-# token for bot
-TOKEN = os.getenv("TOKEN")
-# vip ids for the bot
-owner_id = int(os.getenv("owner_id"))
-admin_ids = [owner_id]
 
 # parameter for deciding if this is a test
 is_test = os.getenv("is_test") != "False"
 # this makes it as difficult as possible to start the bot live on accident
 
+# vip ids for the bot
+owner_id = int(os.getenv("owner_id"))
+admin_ids = list(x for x in [owner_id] if bool(x))
+
 # IDs for the bot to use
 if is_test:
+    TOKEN       = os.getenv("test_TOKEN")
     bot_channel = int(os.getenv("test_bot_channel"))
     dnd_channel = int(os.getenv("test_bot_channel"))
-    guild_id = int(os.getenv("test_guild_id"))
+    guild_id    = int(os.getenv("test_guild_id"))
 else:
+    TOKEN       = os.getenv("live_TOKEN")
     bot_channel = int(os.getenv("live_bot_channel"))
     dnd_channel = int(os.getenv("live_dnd_channel"))
-    guild_id = int(os.getenv("live_guild_id"))
+    guild_id    = int(os.getenv("live_guild_id"))
 
 # handling for dnd announcements
 dnd_date = datetime(
